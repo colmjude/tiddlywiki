@@ -1,6 +1,5 @@
-//--
-//-- DOM utilities - many derived from www.quirksmode.org
-//--
+// DOM utilities - many derived from [quirksmode.org](http://www.quirksmode.org "Link to quirksmode.org").
+// --------------
 
 function drawGradient(place,horiz,locolors,hicolors)
 {
@@ -27,8 +26,8 @@ function drawGradient(place,horiz,locolors,hicolors)
 	}
 }
 
-//# Add an event handler
-//# Thanks to John Resig, via QuirksMode
+// Add an event handler
+// Thanks to John Resig, via QuirksMode
 function addEvent(obj,type,fn)
 {
 	if(obj.attachEvent) {
@@ -40,8 +39,8 @@ function addEvent(obj,type,fn)
 	}
 }
 
-//# Remove an event handler
-//# Thanks to John Resig, via QuirksMode
+// Remove an event handler
+// Thanks to John Resig, via QuirksMode
 function removeEvent(obj,type,fn)
 {
 	if(obj.detachEvent) {
