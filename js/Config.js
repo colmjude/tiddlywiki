@@ -1,18 +1,23 @@
-//--
-//-- Configuration repository
-//--
+// Configuration repository
+// --------------
 
 // Miscellaneous options
 var config = {
-	numRssItems: 20, // Number of items in the RSS feed
-	animDuration: 400, // Duration of UI animations in milliseconds
-	cascadeFast: 20, // Speed for cascade animations (higher == slower)
-	cascadeSlow: 60, // Speed for EasterEgg cascade animations
-	cascadeDepth: 5, // Depth of cascade animation
-	locale: "en" // W3C language tag
+	// Number of items in the RSS feed
+	numRssItems: 20,
+	// Duration of UI animations in milliseconds
+	animDuration: 400,
+	// Speed for cascade animations (higher == slower)
+	cascadeFast: 20,
+	// Speed for EasterEgg cascade animations
+	cascadeSlow: 60,
+	// Depth of cascade animation
+	cascadeDepth: 5,
+	// W3C language tag
+	locale: "en"
 };
 
-// Hashmap of alternative parsers for the wikifier
+// Hashmap of alternative parsers for the `wikifier`
 config.parsers = {};
 
 // Adaptors
@@ -51,7 +56,8 @@ config.options = {
 	chkForceMinorUpdate: false,
 	chkConfirmDelete: true,
 	chkInsertTabs: false,
-	chkUsePreForStorage: true, // Whether to use <pre> format for storage
+	// Whether to use <pre> format for storage
+	chkUsePreForStorage: true,
 	chkDisplayInstrumentation: false,
 	txtBackupFolder: "",
 	txtEditorFocus: "text",
@@ -63,11 +69,11 @@ config.options = {
 	};
 config.optionsDesc = {};
 
-//# config.optionSource["chkAnimate"] can be:
-//# 	cookie: the option gets stored in a cookie, with the default value coming from SystemSettings
-//#		volatile: the option isn't persisted at all, and reverts to the default specified in SystemSettings when the document is reloaded
-//#		setting: the option is stored in the SystemSettings tiddler
-//#	The default is "setting"
+// `config.optionSource["chkAnimate"]` can be:
+// 	cookie: the option gets stored in a cookie, with the default value coming from SystemSettings
+//		volatile: the option isn't persisted at all, and reverts to the default specified in SystemSettings when the document is reloaded
+//		setting: the option is stored in the SystemSettings tiddler
+//	The default is "setting"
 config.optionsSource = {};
 
 // Default tiddler templates
@@ -202,9 +208,8 @@ config.glyphs = {
 	codes: {}
 };
 
-//--
-//-- Shadow tiddlers
-//--
+// Shadow tiddlers
+// --------------
 
 config.shadowTiddlers = {
 	StyleSheet: "",
