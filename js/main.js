@@ -2,19 +2,32 @@
 //-- Main
 //--
 
-var params = null; // Command line parameters
-var store = null; // TiddlyWiki storage
-var story = null; // Main story
-var formatter = null; // Default formatters for the wikifier
-var anim = typeof Animator == "function" ? new Animator() : null; // Animation engine
-var readOnly = false; // Whether we're in readonly mode
-var highlightHack = null; // Embarrassing hack department...
-var hadConfirmExit = false; // Don't warn more than once
-var safeMode = false; // Disable all plugins and cookies
-var showBackstage; // Whether to include the backstage area
-var installedPlugins = []; // Information filled in when plugins are executed
-var startingUp = false; // Whether we're in the process of starting up
-var pluginInfo,tiddler; // Used to pass information to plugins in loadPlugins()
+// Command line parameters
+var params = null;
+// TiddlyWiki storage
+var store = null;
+// Main story
+var story = null;
+// Default formatters for the wikifier
+var formatter = null;
+// Animation engine
+var anim = typeof Animator == "function" ? new Animator() : null;
+// Whether we're in readonly mode
+var readOnly = false;
+// Embarrassing hack department...
+var highlightHack = null;
+// Don't warn more than once
+var hadConfirmExit = false;
+// Disable all plugins and cookies
+var safeMode = false;
+// Whether to include the backstage area
+var showBackstage;
+// Information filled in when plugins are executed
+var installedPlugins = [];
+// Whether we're in the process of starting up
+var startingUp = false;
+// Used to pass information to plugins in loadPlugins()
+var pluginInfo,tiddler;
 
 // Whether to use the JavaSaver applet
 var useJavaSaver = (config.browser.isSafari || config.browser.isOpera) && (document.location.toString().substr(0,4) != "http");
@@ -131,7 +144,7 @@ function loadPlugins(tag)
 	if(safeMode)
 		return false;
 	var tiddlers = store.getTaggedTiddlers(tag);
-	//# ensure the plugins are sorted into case sensitive order
+	// ensure the plugins are sorted into case sensitive order
 	tiddlers.sort(function(a,b) {return a.title < b.title ? -1 : (a.title == b.title ? 0 : 1);});
 	var toLoad = [];
 	var nLoaded = 0;
