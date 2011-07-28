@@ -1,6 +1,5 @@
-//--
-//-- Server adaptor for talking to static TiddlyWiki files
-//--
+// Server adaptor for talking to static TiddlyWiki files
+// --------------
 
 function FileAdaptor()
 {
@@ -14,7 +13,7 @@ FileAdaptor.serverLabel = 'TiddlyWiki';
 FileAdaptor.loadTiddlyWikiSuccess = function(context,jqXHR)
 {
 	context.status = true;
-	//# Load the content into a TiddlyWiki() object
+	// Load the content into a **TiddlyWiki()** object
 	context.adaptor.store = new TiddlyWiki();
 	if(!context.adaptor.store.importTiddlyWiki(jqXHR.responseText)) {
 		context.statusText = config.messages.invalidFileError.format([context.host]);
@@ -30,17 +29,17 @@ FileAdaptor.loadTiddlyWikiError = function(context,jqXHR)
 	context.complete(context,context.userParams);
 };
 
-// Get the list of workspaces on a given server
-//#   context - passed on as a parameter to the callback function
-//#   userParams - user settable object object that is passed on unchanged to the callback function
-//#   callback - function to be called on completion
-//# Return value is true if the request was successfully issued, false if this connector doesn't support getWorkspaceList(),
-//#   or an error description string if there was a problem
-//# The callback parameters are callback(context,userParams)
-//#   context.status - true if OK, false if error
-//#   context.statusText - error message if there was an error
-//#   context.adaptor - reference to this adaptor object
-//#   userParams - parameters as originally passed into the getWorkspaceList function
+// Get the list of workspaces on a given server  
+//   **context** - passed on as a parameter to the callback function  
+//   **userParams** - user settable object object that is passed on unchanged to the callback function  
+//   **callback** - function to be called on completion  
+// Return value is true if the request was successfully issued, false if this connector doesn't support `getWorkspaceList()`,
+//   or an error description string if there was a problem  
+// The callback parameters are callback(context,userParams)  
+//   **context.status** - true if OK, false if error  
+//   **context.statusText** - error message if there was an error  
+//   **context.adaptor** - reference to this adaptor object  
+//   **userParams** - parameters as originally passed into the `getWorkspaceList` function
 FileAdaptor.prototype.getWorkspaceList = function(context,userParams,callback)
 {
 	context = this.setContext(context,userParams,callback);
@@ -51,19 +50,19 @@ FileAdaptor.prototype.getWorkspaceList = function(context,userParams,callback)
 	return true;
 };
 
-// Gets the list of tiddlers within a given workspace
-//#   context - passed on as a parameter to the callback function
-//#   userParams - user settable object object that is passed on unchanged to the callback function
-//#   callback - function to be called on completion
-//#   filter - filter expression
-//# Return value is true if the request was successfully issued,
-//#   or an error description string if there was a problem
-//# The callback parameters are callback(context,userParams)
-//#   context.status - true if OK, false if error
-//#   context.statusText - error message if there was an error
-//#   context.adaptor - reference to this adaptor object
-//#   context.tiddlers - array of tiddler objects
-//#   userParams - parameters as originally passed into the getTiddlerList function
+// Gets the list of tiddlers within a given workspace  
+//   **context** - passed on as a parameter to the callback function  
+//   **userParams** - user settable object object that is passed on unchanged to the callback function  
+//   **callback** - function to be called on completion  
+//   **filter** - filter expression  
+// Return value is true if the request was successfully issued,
+//   or an error description string if there was a problem  
+// The callback parameters are callback(context,userParams)  
+//   **context.status** - true if OK, false if error  
+//   **context.statusText** - error message if there was an error  
+//   **context.adaptor** - reference to this adaptor object  
+//   **context.tiddlers** - array of tiddler objects  
+//   **userParams** - parameters as originally passed into the `getTiddlerList` function
 FileAdaptor.prototype.getTiddlerList = function(context,userParams,callback,filter)
 {
 	context = this.setContext(context,userParams,callback);
@@ -117,19 +116,19 @@ FileAdaptor.prototype.generateTiddlerInfo = function(tiddler)
 	return info;
 };
 
-// Retrieve a tiddler from a given workspace on a given server
-//#   title - title of the tiddler to get
-//#   context - passed on as a parameter to the callback function
-//#   userParams - user settable object object that is passed on unchanged to the callback function
-//#   callback - function to be called on completion
-//# Return value is true if the request was successfully issued,
-//#   or an error description string if there was a problem
-//# The callback parameters are callback(context,userParams)
-//#   context.status - true if OK, false if error
-//#   context.statusText - error message if there was an error
-//#   context.adaptor - reference to this adaptor object
-//#   context.tiddler - the retrieved tiddler, or null if it cannot be found
-//#   userParams - parameters as originally passed into the getTiddler function
+// Retrieve a tiddler from a given workspace on a given server  
+//   **title** - title of the tiddler to get  
+//   **context** - passed on as a parameter to the callback function  
+//   **userParams** - user settable object object that is passed on unchanged to the callback function  
+//   **callback** - function to be called on completion  
+// Return value is true if the request was successfully issued,
+//   or an error description string if there was a problem  
+// The callback parameters are callback(context,userParams)  
+//   **context.status** - true if OK, false if error  
+//   **context.statusText** - error message if there was an error  
+//   **context.adaptor** - reference to this adaptor object  
+//   **context.tiddler** - the retrieved tiddler, or null if it cannot be found  
+//   **userParams** - parameters as originally passed into the `getTiddler` function  
 FileAdaptor.prototype.getTiddler = function(title,context,userParams,callback)
 {
 	context = this.setContext(context,userParams,callback);
@@ -161,7 +160,8 @@ FileAdaptor.getTiddlerComplete = function(context,userParams)
 		t.fields['server.page.revision'] = t.modified.convertToYYYYMMDDHHMM();
 		context.tiddler = t;
 		context.status = true;
-	} else { //# tiddler does not exist in document
+	} else { 
+		// tiddler does not exist in document
 		context.status = false;
 	}
 	if(context.allowSynchronous) {
