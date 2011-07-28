@@ -1,6 +1,5 @@
-//--
-//-- Menu and toolbar commands
-//--
+// Menu and toolbar commands
+// --------------
 
 config.commands.closeTiddler.handler = function(event,src,title)
 {

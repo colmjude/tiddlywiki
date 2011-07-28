@@ -3,10 +3,12 @@ config.userAgent = navigator.userAgent.toLowerCase();
 config.browser = {
 	isIE: config.userAgent.indexOf("msie") != -1 && config.userAgent.indexOf("opera") == -1,
 	isGecko: navigator.product == "Gecko" && config.userAgent.indexOf("WebKit") == -1,
-	ieVersion: /MSIE (\d.\d)/i.exec(config.userAgent), // config.browser.ieVersion[1], if it exists, will be the IE version string, eg "6.0"
+	// config.browser.ieVersion[1], if it exists, will be the IE version string, eg "6.0"
+	ieVersion: /MSIE (\d.\d)/i.exec(config.userAgent),
 	isSafari: config.userAgent.indexOf("applewebkit") != -1,
 	isBadSafari: !((new RegExp("[\u0150\u0170]","g")).test("\u0150")),
-	firefoxDate: /gecko\/(\d{8})/i.exec(config.userAgent), // config.browser.firefoxDate[1], if it exists, will be Firefox release date as "YYYYMMDD"
+	// config.browser.firefoxDate[1], if it exists, will be Firefox release date as "YYYYMMDD"
+	firefoxDate: /gecko\/(\d{8})/i.exec(config.userAgent),
 	isOpera: config.userAgent.indexOf("opera") != -1,
 	isLinux: config.userAgent.indexOf("linux") != -1,
 	isUnix: config.userAgent.indexOf("x11") != -1,

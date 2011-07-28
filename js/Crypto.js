@@ -1,6 +1,5 @@
-//--
-//-- Crypto functions and associated conversion routines
-//--
+// Crypto functions and associated conversion routines
+// --------------
 
 // Crypto 'namespace'
 function Crypto() {}
@@ -57,16 +56,16 @@ Crypto.sha1Str = function(str)
 // Calculate the SHA-1 hash of an array of blen bytes of big-endian 32-bit words
 Crypto.sha1 = function(x,blen)
 {
-	// Add 32-bit integers, wrapping at 32 bits
-	//# Uses 16-bit operations internally to work around bugs in some JavaScript interpreters.
+	// Add 32-bit integers, wrapping at 32 bits  
+	// Uses 16-bit operations internally to work around bugs in some JavaScript interpreters.
 	function add32(a,b)
 	{
 		var lsw=(a&0xFFFF)+(b&0xFFFF);
 		var msw=(a>>16)+(b>>16)+(lsw>>16);
 		return (msw<<16)|(lsw&0xFFFF);
 	}
-	//# Cryptographic round helper function. Add five 32-bit integers, wrapping at 32 bits, second parameter is rotated left 5 bits before the addition
-	//# Uses 16-bit operations internally to work around bugs in some JavaScript interpreters.
+	// Cryptographic round helper function. Add five 32-bit integers, wrapping at 32 bits, second parameter is rotated left 5 bits before the addition  
+	// Uses 16-bit operations internally to work around bugs in some JavaScript interpreters.
 	function AA(a,b,c,d,e)
 	{
 		b=(b>>>27)|(b<<5);
@@ -74,7 +73,7 @@ Crypto.sha1 = function(x,blen)
 		var msw=(a>>16)+(b>>16)+(c>>16)+(d>>16)+(e>>16)+(lsw>>16);
 		return (msw<<16)|(lsw&0xFFFF);
 	}
-	//# Cryptographic round helper function.
+	// Cryptographic round helper function.
 	function RR(w,j)
 	{
 		var n=w[j-3]^w[j-8]^w[j-14]^w[j-16];
@@ -82,9 +81,9 @@ Crypto.sha1 = function(x,blen)
 	}
 
 	var len=blen*8;
-	//# Append padding so length in bits is 448 mod 512
+	// Append padding so length in bits is 448 mod 512
 	x[len>>5] |= 0x80 << (24-len%32);
-	//# Append length
+	// Append length
 	x[((len+64>>9)<<4)+15]=len;
 	var w=new Array(80);
 
