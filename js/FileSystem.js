@@ -1,18 +1,17 @@
-//--
-//-- Filesystem code
-//--
-//#
-//# This code is designed to be reusable, but please take care,
-//# there are some intricacies that make it tricky to use these
-//# functions with full UTF-8 files. For more details, see:
-//#
-//# http://trac.tiddlywiki.org/ticket/99
-//#
-//#
-//# UTF-8 encoding rules:
-//# 0x0000 - 0x007F:  0xxxxxxx
-//# 0x0080 - 0x07FF:  110xxxxx 10xxxxxx
-//# 0x0800 - 0xFFFF:  1110xxxx 10xxxxxx 10xxxxxx
+// Filesystem code
+// --------------
+
+// This code is designed to be reusable, but please take care,
+// there are some intricacies that make it tricky to use these
+// functions with full UTF-8 files. For more details, see:
+//
+// [Trac Ticket 99](http://trac.tiddlywiki.org/ticket/99)
+//
+//
+// UTF-8 encoding rules:  
+// 0x0000 - 0x007F:  0xxxxxxx  
+// 0x0080 - 0x07FF:  110xxxxx 10xxxxxx  
+// 0x0800 - 0xFFFF:  1110xxxx 10xxxxxx 10xxxxxx  
 
 function convertUTF8ToUnicode(u)
 {
@@ -58,8 +57,8 @@ function mozConvertUTF8ToUnicode(u)
 	return fin.length > 0 ? s+fin : s;
 }
 
-//# convert unicode string to a format suitable for saving to file
-//# this should be UTF8, unless the browser does not support saving non-ASCII characters
+// convert unicode string to a format suitable for saving to file
+// this should be UTF8, unless the browser does not support saving non-ASCII characters
 function convertUnicodeToFileFormat(s)
 {
 	return config.browser.isOpera || !window.netscape ? (config.browser.isIE ? convertUnicodeToHtmlEntities(s) : s) : mozConvertUnicodeToUTF8(s);
@@ -142,14 +141,14 @@ function ieCreatePath(path)
 		return null;
 	}
 
-	//# Remove the filename, if present. Use trailing slash (i.e. "foo\bar\") if no filename.
+	// Remove the filename, if present. Use trailing slash (i.e. "foo\bar\") if no filename.
 	var pos = path.lastIndexOf("\\");
 	if(pos==-1)
 		pos = path.lastIndexOf("/");
 	if(pos!=-1)
 		path = path.substring(0,pos+1);
 
-	//# Walk up the path until we find a folder that exists
+	// Walk up the path until we find a folder that exists
 	var scan = [path];
 	var parent = fso.GetParentFolderName(path);
 	while(parent && !fso.FolderExists(parent)) {
@@ -157,7 +156,7 @@ function ieCreatePath(path)
 		parent = fso.GetParentFolderName(parent);
 	}
 
-	//# Walk back down the path, creating folders
+	// Walk back down the path, creating folders
 	for(i=scan.length-1;i>=0;i--) {
 		if(!fso.FolderExists(scan[i])) {
 			fso.CreateFolder(scan[i]);
@@ -173,7 +172,7 @@ function ieSaveFile(filePath,content)
 	try {
 		var fso = new ActiveXObject("Scripting.FileSystemObject");
 	} catch(ex) {
-		//# alert("Exception while attempting to save\n\n" + ex.toString());
+		// alert("Exception while attempting to save\n\n" + ex.toString());
 		return null;
 	}
 	var file = fso.OpenTextFile(filePath,2,-1,0);
@@ -191,7 +190,7 @@ function ieLoadFile(filePath)
 		var content = file.ReadAll();
 		file.Close();
 	} catch(ex) {
-		//# alert("Exception while attempting to load\n\n" + ex.toString());
+		// alert("Exception while attempting to load\n\n" + ex.toString());
 		return null;
 	}
 	return content;
@@ -226,7 +225,7 @@ function mozillaSaveFile(filePath,content)
 			out.close();
 			return true;
 		} catch(ex) {
-			//# alert("Exception while attempting to save\n\n" + ex);
+			// alert("Exception while attempting to save\n\n" + ex);
 			return false;
 		}
 	}
@@ -252,7 +251,7 @@ function mozillaLoadFile(filePath)
 			inputStream.close();
 			return contents;
 		} catch(ex) {
-			//# alert("Exception while attempting to load\n\n" + ex);
+			// alert("Exception while attempting to load\n\n" + ex);
 			return false;
 		}
 	}
