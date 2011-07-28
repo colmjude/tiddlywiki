@@ -1,8 +1,7 @@
-//--
-//-- Augmented methods for the JavaScript Array() object
-//--
+// Augmented methods for the JavaScript Array() object
+// --------------
 
-// Add indexOf function if browser does not support it
+// Add `indexOf` function if browser does not support it
 if(!Array.indexOf) {
 Array.prototype.indexOf = function(item,from)
 {
@@ -33,7 +32,7 @@ Array.prototype.contains = function(item)
 	return this.indexOf(item) != -1;
 };
 
-// Adds, removes or toggles a particular value within an array
+//  Adds, removes or toggles a particular value within an array
 //  value - value to add
 //  mode - +1 to add value, -1 to remove value, 0 to toggle it
 Array.prototype.setItem = function(value,mode)
@@ -72,7 +71,8 @@ Array.prototype.containsAll = function(items)
 	return true;
 };
 
-// Push a new value into an array only if it is not already present in the array. If the optional unique parameter is false, it reverts to a normal push
+// Push a new value into an array only if it is not already present in the array.
+// If the optional unique parameter is false, it reverts to a normal push
 Array.prototype.pushUnique = function(item,unique)
 {
 	if(unique === false) {

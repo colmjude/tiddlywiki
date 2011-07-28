@@ -1,6 +1,6 @@
-//--
-//-- Backstage
-//--
+// Backstage
+// --------------
+
 // Backstage tasks
 config.tasks.save.action = saveChanges;
 
