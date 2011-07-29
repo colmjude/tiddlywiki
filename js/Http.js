@@ -1,8 +1,7 @@
-//--
-//-- HTTP request code
-//--
+// HTTP request code
+// --------------
 
-//# Perform an http request using the jQuery ajax function
+// Perform an http request using the jQuery ajax function
 function ajaxReq(args)
 {
 	if(window.Components && window.netscape && window.netscape.security && document.location.protocol.indexOf("http") == -1)
@@ -10,25 +9,25 @@ function ajaxReq(args)
 	return jQuery.ajax(args);
 }
 
-//# Perform an http request
-//#   type - GET/POST/PUT/DELETE
-//#   url - the source url
-//#   data - optional data for POST and PUT
-//#   contentType - optionalContent type for the data (defaults to application/x-www-form-urlencoded)
-//#   username - optional username for basic authentication
-//#   password - optional password for basic authentication
-//#   callback - function to call when there is a response
-//#   params - parameter object that gets passed to the callback for storing it's state
-//#   headers - optional hashmap of additional headers
-//#   allowCache - unless true, adds a "nocache=" parameter to the URL
-//# Return value is the underlying XMLHttpRequest object, or a string if there was an error
-//# Callback function is called like this:
-//#   callback(status,params,responseText,url,xhr)
-//#     status - true if OK, false if error
-//#     params - the parameter object provided to loadRemoteFile()
-//#     responseText - the text of the file
-//#     url - requested URL
-//#     xhr - the underlying XMLHttpRequest object
+// Perform an http request  
+//   **type** - GET/POST/PUT/DELETE  
+//   **url** - the source url  
+//   **data** - optional data for POST and PUT  
+//   **contentType** - optionalContent type for the data (defaults to application/x-www-form-urlencoded)  
+//   **username** - optional username for basic authentication  
+//   **password** - optional password for basic authentication  
+//   **callback** - function to call when there is a response  
+//   **params** - parameter object that gets passed to the callback for storing it's state  
+//   **headers** - optional hashmap of additional headers  
+//   **allowCache** - unless true, adds a "nocache=" parameter to the URL  
+// Return value is the underlying XMLHttpRequest object, or a string if there was an error  
+// Callback function is called like this:  
+//   callback(status,params,responseText,url,xhr)  
+//     **status** - true if OK, false if error  
+//     **params** - the parameter object provided to `loadRemoteFile()`  
+//     **responseText** - the text of the file  
+//     **url** - requested URL  
+//     **xhr** - the underlying XMLHttpRequest object  
 function httpReq(type,url,callback,params,headers,data,contentType,username,password,allowCache)
 {
 	var httpSuccess = function(xhr) {

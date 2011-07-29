@@ -1,6 +1,5 @@
-//--
-//-- ImportTiddlers macro
-//--
+// ImportTiddlers macro
+// --------------
 
 config.macros.importTiddlers.handler = function(place,macroName,params,wikifier,paramString,tiddler)
 {
@@ -52,7 +51,8 @@ config.macros.importTiddlers.restart = function(wizard)
 	wizard.setButtons([{caption: this.openLabel, tooltip: this.openPrompt, onClick: me.onOpen}]);
 	wizard.formElem.action = "javascript:;";
 	wizard.formElem.onsubmit = function() {
-		if(!this.txtPath || this.txtPath.value.length) //# check for manually entered path in first step
+		// check for manually entered path in first step
+		if(!this.txtPath || this.txtPath.value.length)
 			this.lastChild.firstChild.onclick();
 	};
 };
@@ -117,22 +117,25 @@ config.macros.importTiddlers.getURLFromLocalPath = function(v)
 {
 	if(!v || !v.length)
 		return v;
-	v = v.replace(/\\/g,"/"); // use "/" for cross-platform consistency
+	// use "/" for cross-platform consistency
+	v = v.replace(/\\/g,"/");
 	var u;
 	var t = v.split(":");
-	var p = t[1] || t[0]; // remove drive letter (if any)
+	// remove drive letter (if any)
+	var p = t[1] || t[0];
 	if(t[1] && (t[0] == "http" || t[0] == "https" || t[0] == "file")) {
-		//# input is already a URL
+		// input is already a URL
 		u = v;
 	} else if(p.substr(0,1)=="/") {
-		//# path is absolute, add protocol+domain+extra slash (if drive letter)
+		// path is absolute, add protocol+domain+extra slash (if drive letter)
 		u = document.location.protocol + "//" + document.location.hostname + (t[1] ? "/" : "") + v;
 	} else {
-		//# path is relative, add current document protocol+domain+path
+		// path is relative, add current document protocol+domain+path
 		var c = document.location.href.replace(/\\/g,"/");
 		var pos = c.lastIndexOf("/");
 		if(pos!=-1)
-			c = c.substr(0,pos); // remove filename
+			// remove filename
+			c = c.substr(0,pos);
 		u = c + "/" + p;
 	}
 	return u;
@@ -174,7 +177,7 @@ config.macros.importTiddlers.onGetWorkspaceList = function(context,wizard)
 	if(!workspace && context.workspaces.length==1)
 		workspace = context.workspaces[0].title;
 	if(workspace) {
-		//# if there is only one workspace, then open it directly
+		// if there is only one workspace, then open it directly
 		context.adaptor.openWorkspace(workspace,context,wizard,me.onOpenWorkspace);
 		wizard.setValue("workspace",workspace);
 		wizard.setButtons([{caption: me.cancelLabel, tooltip: me.cancelPrompt, onClick: me.onCancel}],me.statusOpenWorkspace);
