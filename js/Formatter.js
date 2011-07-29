@@ -1,6 +1,5 @@
-//--
-//-- Standard formatters
-//--
+// Standard formatters
+// --------------
 
 config.formatters = [
 {
@@ -109,12 +108,14 @@ config.formatters = [
 				prevColumns[col] = {rowSpanCount:1,element:cell};
 				if(colSpanCount > 1) {
 					cell.setAttribute("colspan",colSpanCount);
-					cell.setAttribute("colSpan",colSpanCount); // Needed for IE
+					// Needed for IE
+					cell.setAttribute("colSpan",colSpanCount);
 					colSpanCount = 1;
 				}
 				config.formatterHelpers.applyCssHelper(cell,styles);
 				w.subWikifyTerm(cell,this.cellTermRegExp);
-				if(w.matchText.substr(w.matchText.length-2,1) == " ") // spaceRight
+				// spaceRight
+				if(w.matchText.substr(w.matchText.length-2,1) == " ")
 					cell.align = spaceLeft ? "center" : "left";
 				else if(spaceLeft)
 					cell.align = "right";
@@ -361,7 +362,7 @@ config.formatters = [
 {
 	name: "image",
 	match: "\\[[<>]?[Ii][Mm][Gg]\\[",
-	//# [<] sequence below is to avoid lessThan-questionMark sequence so TiddlyWikis can be included in PHP files
+	// [<] sequence below is to avoid lessThan-questionMark sequence so TiddlyWikis can be included in PHP files
 	lookaheadRegExp: /\[([<]?)(>?)[Ii][Mm][Gg]\[(?:([^\|\]]+)\|)?([^\[\]\|]+)\](?:\[([^\]]*)\])?\]/mg,
 	handler: function(w)
 	{

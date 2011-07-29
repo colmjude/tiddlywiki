@@ -1,8 +1,7 @@
-//--
-//-- Filter a list of tiddlers
-//--
+// Filter a list of tiddlers
+// --------------
 
-//# Extensible filter functions
+// Extensible filter functions
 config.filters = {
 	tiddler: function(results,match) {
 		var title = match[1]||match[4];
@@ -40,12 +39,12 @@ config.filters = {
 	}
 };
 
-// Filter a list of tiddlers
-//#   filter - filter expression (eg "tidlertitle [[multi word tiddler title]] [tag[systemConfig]]")
-//# Returns an array of Tiddler() objects that match the filter expression
+// Filter a list of tiddlers  
+//   **filter** - filter expression (eg "tidlertitle [[multi word tiddler title]] [tag[systemConfig]]")
+// Returns an array of `Tiddler() objects` that match the filter expression
 TiddlyWiki.prototype.filterTiddlers = function(filter)
 {
-	//# text or [[tiddler title]] or [foo[bar]]
+	// text or [[tiddler title]] or [foo[bar]]
 	var re = /([^\s\[\]]+)|(?:\[([ \w\.\-]+)\[([^\]]+)\]\])|(?:\[\[([^\]]+)\]\])/mg;
 
 	var results = [];
